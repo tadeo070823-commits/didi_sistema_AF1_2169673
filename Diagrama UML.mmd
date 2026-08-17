@@ -1,0 +1,50 @@
+classDiagram
+    class Pasajero {
+        +String idPasajero
+        +String nombre
+        +String telefono
+        +Float calificacion
+        +solicitarViaje()
+        +cancelarViaje()
+    }
+
+    class Conductor {
+        +String idConductor
+        +String nombre
+        +String estado
+        +Float saldoCuenta
+        +Float calificacion
+        +aceptarViaje()
+        +iniciarViaje()
+        +finalizarViaje()
+    }
+
+    class Vehiculo {
+        +String placas
+        +String modelo
+        +String color
+        +Int anio
+        +validarDocumentos()
+    }
+
+    class Viaje {
+        +String idViaje
+        +String origen
+        +String destino
+        +Float montoTotal
+        +String estado
+        +calcularTarifa()
+    }
+
+    class Pago {
+        +String idPago
+        +String metodoPago
+        +Float monto
+        +String estadoPago
+        +procesarCobro()
+    }
+
+    Pasajero "1" -- "0..*" Viaje : solicita
+    Conductor "1" -- "0..*" Viaje : realiza
+    Conductor "1" -- "1" Vehiculo : conduce
+    Viaje "1" -- "1" Pago : genera 
